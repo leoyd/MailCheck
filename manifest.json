@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "MailCheck",
+  "description": "This extension control EmailAddress illicit usage shown in webPage",
+  "version": "1.0",
+  "permissions": [
+    "cookies",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://api.scampredictor.com/"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "css/badge.css"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
+    }
+  ],
+  "action": {
+    "default_icon": "/resources/iconXS.png",
+    "default_popup": "main.html",
+    "default_title": "MailCheck"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "run_at": "document_end",
+      "js": [
+        "node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "node_modules/jquery/dist/jquery.min.js",
+        "node_modules/js-cookie/dist/js.cookie.min.js",
+        "node_modules/mustache/mustache.js",
+        "js/ScamPredictorChecker.js",
+        "js/manager.js",
+        "js/verifyMail.js"
+      ],
+      "css": [
+        "css/badge.css"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
+    }
+  ]
+}
